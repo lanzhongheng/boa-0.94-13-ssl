@@ -1,0 +1,25 @@
+把linux脚本和程序上传到svn，再次下载下来后，可执行权限会丢失。
+所以下载了boa的源码目录boa-0.94.13-ssl后，需要执行add_pem.sh脚本，把原本具有可执行权限的文件都加上可执行权限。
+add_pem.sh本身也需要手动加上可执行权限。即从svn下载boa源码后，需要进入boa-0.94.13-ssl源码目录运行以下命令：
+# chmod +x add_pem.sh
+
+
+为了方便自动编译，编写了mk.sh脚本
+进入boa-0.94.13-ssl目录后，可以进行如下操作
+
+1.重新完整编译项目
+# ./mk.sh all
+
+2.增量编译项目
+# ./mk.sh
+
+3.清理编译生成的文件
+# ./mk.sh clean
+
+4.完全清理项目
+# ./mk.sh distclean
+
+
+此项目依赖openssl头文件及库文件
+在执行mk.sh之前，需要把mk.sh中的ssl_inc、ssl_libdir修改为正确路径
+
